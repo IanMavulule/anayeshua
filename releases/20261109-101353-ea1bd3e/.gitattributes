@@ -1,0 +1,11 @@
+# Consistent line endings between Windows and Linux.
+* text=auto eol=lf
+*.png binary
+*.jpg binary
+*.webp binary
+*.otf binary
+*.woff2 binary
+*.mp4 binary
+
+# Scripts e configuração do servidor Linux
+*.sh text eol=lf

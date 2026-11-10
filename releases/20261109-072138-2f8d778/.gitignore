@@ -1,0 +1,13 @@
+node_modules/
+dist/
+.vite/
+*.tsbuildinfo
+
+/videos/*
+!/videos/.gitkeep
+
+/data/
+
+.env
+secrets/
+backups/

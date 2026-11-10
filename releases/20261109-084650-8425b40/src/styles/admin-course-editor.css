@@ -1,0 +1,265 @@
+/* ==========================================================================
+   ANA YESHUA — EDITOR DE CURSO
+   Painel largo em dois tempos: à esquerda os passos (informação, capa,
+   módulos e aulas); à direita, fixos, a pré-visualização do cartão, a
+   publicação e a lista do que falta. Carregado depois de admin-modern.css.
+   ========================================================================== */
+
+/* Gaveta larga e cabeçalho -------------------------------------------------- */
+.adm-drawer-panel--wide { width: min(1180px, 100%); background: var(--night); }
+.adm-drawer-panel--wide .adm-drawer-head { padding: 26px 32px 22px; border-bottom-color: var(--line); background: var(--surface); }
+.adm-drawer-panel--wide .adm-drawer-head h2 { font-size: var(--title-md); }
+.adm-drawer-sub { font-size: var(--text-sm); color: var(--text-soft); }
+.adm-drawer-close { border-color: var(--line-strong); font-size: 14px; }
+.adm-drawer-close:hover { background: rgba(253, 227, 168, .35); border-color: var(--gold); color: var(--text); }
+.adm-drawer-panel--wide .adm-drawer-body { padding: 28px 32px 40px; }
+.adm-drawer-foot { padding: 16px 32px; border-top-color: var(--line); box-shadow: 0 -12px 30px -24px rgba(3, 76, 88, .35); }
+.adm-status-text { font: 500 var(--text-sm)/1.4 var(--font-sans); color: var(--danger); }
+
+/* Duas colunas ---------------------------------------------------------------- */
+.adm-course { display: grid; grid-template-columns: minmax(0, 1fr) 340px; gap: 28px; align-items: start; }
+.adm-course-main { display: grid; gap: 20px; min-width: 0; }
+.adm-course-side { position: sticky; top: 0; display: grid; gap: 16px; }
+
+/* Passos ------------------------------------------------------------------------ */
+.adm-step {
+  display: grid;
+  gap: 18px;
+  padding: clamp(20px, 2.4vw, 28px);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  background: var(--surface);
+  box-shadow: var(--adm-shadow);
+}
+.adm-step-head { display: flex; align-items: flex-start; gap: 16px; }
+.adm-step-head > div { flex: 1; min-width: 0; }
+.adm-step-num {
+  display: grid;
+  place-items: center;
+  flex: none;
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  background: rgba(253, 227, 168, .55);
+  font: 400 17px/1 var(--font-display);
+  color: var(--gold);
+}
+.adm-step-head h3 { margin: 2px 0 0; font: 400 var(--title-sm)/1.2 var(--font-display); color: var(--text); }
+.adm-step-head p { margin: 4px 0 0; font-size: var(--text-sm); line-height: 1.55; color: var(--text-mute); }
+
+.adm-input--lg { min-height: 52px; font-size: var(--text-lg); }
+.adm-label-row { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; }
+.adm-count { font-size: var(--text-xs); color: var(--text-mute); font-variant-numeric: tabular-nums; }
+.adm-hint { margin: 0; font-size: var(--text-xs); line-height: 1.6; color: var(--text-mute); }
+.adm-fieldset { margin: 0; padding: 0; border: 0; min-width: 0; }
+.adm-fieldset legend { margin-bottom: 7px; padding: 0; }
+
+/* Escolhas em pílula (categoria e nível) ------------------------------------------ */
+.adm-segmented { display: flex; flex-wrap: wrap; gap: 8px; }
+.adm-seg {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 40px;
+  padding: 0 16px;
+  border: 1px solid var(--line-strong);
+  border-radius: var(--radius-pill);
+  background: var(--surface);
+  font: 500 var(--text-sm)/1 var(--font-sans);
+  color: var(--text-soft);
+  cursor: pointer;
+  transition: border-color .2s var(--ease), background .2s var(--ease), color .2s var(--ease);
+}
+.adm-seg input { position: absolute; opacity: 0; pointer-events: none; }
+.adm-seg:hover { border-color: var(--line-gold); color: var(--text); }
+.adm-seg.is-active { border-color: var(--gold-deep); background: rgba(253, 227, 168, .45); color: var(--text); font-weight: 600; }
+.adm-seg:has(input:focus-visible) { outline: 2px solid var(--gold); outline-offset: 2px; }
+.adm-seg-dot { width: 8px; height: 8px; border-radius: 50%; background: currentColor; }
+
+/* Capa ------------------------------------------------------------------------------ */
+.adm-cover-stage { position: relative; overflow: hidden; aspect-ratio: 16 / 9; border-radius: var(--radius-md); background: var(--night-deep); }
+.adm-cover-stage img { width: 100%; height: 100%; object-fit: cover; }
+.adm-cover-upload {
+  position: absolute;
+  right: 14px;
+  bottom: 14px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 42px;
+  padding: 0 18px;
+  border-radius: var(--radius-pill);
+  background: rgba(255, 255, 255, .92);
+  box-shadow: 0 10px 24px -14px rgba(3, 76, 88, .6);
+  font: 600 var(--text-sm)/1 var(--font-sans);
+  color: var(--text);
+  cursor: pointer;
+  backdrop-filter: blur(6px);
+}
+.adm-cover-upload svg { width: 16px; height: 16px; color: var(--gold); }
+.adm-cover-upload:hover { background: #fff; }
+.adm-cover-upload:has(input:focus-visible) { outline: 2px solid var(--gold); outline-offset: 2px; }
+/* Foto do evento (formulário de eventos): reutiliza o palco da capa. */
+.adm-event-photo__empty { display: grid; place-items: center; height: 100%; margin: 0; padding: 0 24px 56px; text-align: center; font-size: var(--text-sm); color: var(--text-soft); }
+.adm-cover-upload[aria-disabled="true"] { opacity: .7; cursor: progress; }
+.adm-link { padding: 0; border: 0; background: none; font: inherit; color: var(--teal); text-decoration: underline; cursor: pointer; }
+.adm-cover-gallery { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 10px; }
+.adm-cover-tile {
+  position: relative;
+  padding: 0;
+  overflow: hidden;
+  aspect-ratio: 16 / 9;
+  border: 2px solid transparent;
+  border-radius: 10px;
+  background: var(--night-deep);
+  cursor: pointer;
+  transition: border-color .2s var(--ease), transform .2s var(--ease);
+}
+.adm-cover-tile img { width: 100%; height: 100%; object-fit: cover; }
+.adm-cover-tile:hover { transform: translateY(-1px); border-color: var(--line-gold); }
+.adm-cover-tile.is-active { border-color: var(--gold-deep); box-shadow: 0 0 0 3px rgba(253, 227, 168, .6); }
+
+/* Módulos e aulas --------------------------------------------------------------------- */
+.adm-modules-list { gap: 14px; }
+.adm-modules-empty {
+  display: grid;
+  justify-items: center;
+  gap: 8px;
+  padding: 34px 20px;
+  text-align: center;
+  border: 1px dashed var(--line-strong);
+  border-radius: var(--radius-md);
+  background: var(--night);
+}
+.adm-modules-empty strong { font: 400 var(--title-sm)/1.2 var(--font-display); color: var(--text); }
+.adm-modules-empty p { margin: 0 0 8px; max-width: 42ch; font-size: var(--text-sm); color: var(--text-mute); }
+.adm-module { overflow: hidden; border: 1px solid var(--line); border-radius: var(--radius-md); background: var(--surface); }
+.adm-module-head { padding: 12px 14px; background: var(--tone-linen); border-bottom-color: var(--line); }
+.adm-module-num { font: 600 var(--text-xs)/1 var(--font-sans); color: var(--gold); }
+.adm-module-head .adm-input,
+.adm-lesson-copy .adm-input { min-height: 40px; padding: 8px 12px; font-size: var(--text-sm); }
+.adm-module-body { background: var(--line); }
+.adm-lesson-row { padding: 14px; }
+.adm-free { font: 500 var(--text-sm)/1.3 var(--font-sans); color: var(--text-soft); }
+.adm-row-tools .adm-ibtn { width: 32px; height: 32px; }
+.adm-row-tools--vertical .adm-ibtn { width: 30px; height: 28px; }
+.adm-add-line { padding: 12px 14px; border-top-color: var(--line); font: 600 var(--text-sm)/1 var(--font-sans); color: var(--gold); }
+.adm-add-line:hover { background: rgba(253, 227, 168, .3); color: var(--gold-strong); }
+.adm-drop { border-radius: var(--radius-sm); border-color: var(--line-strong); }
+.adm-drop strong { font: 600 var(--text-sm)/1.3 var(--font-sans); }
+.adm-drop small { font-size: var(--text-xs); }
+
+/* Pontos de oração (por aula e do devocional) ---------------------------------------- */
+.adm-prayer-toggle {
+  justify-self: start;
+  padding: 6px 12px;
+  border: 1px dashed var(--line-gold);
+  border-radius: var(--radius-pill);
+  background: transparent;
+  font: 600 var(--text-xs)/1.2 var(--font-sans);
+  color: var(--gold);
+  cursor: pointer;
+}
+.adm-prayer-toggle span { font-weight: 400; color: var(--text-mute); }
+.adm-prayer-toggle:hover { background: rgba(253, 227, 168, .3); border-style: solid; }
+.adm-prayer .adm-textarea { min-height: 0; font-size: var(--text-sm); line-height: 1.6; }
+.adm-lesson-copy .adm-prayer { padding: 12px; border-radius: var(--radius-sm); background: rgba(253, 227, 168, .2); }
+
+/* Coluna lateral ---------------------------------------------------------------------- */
+.adm-side-card { padding: 20px; border: 1px solid var(--line); border-radius: var(--radius-lg); background: var(--surface); box-shadow: var(--adm-shadow); }
+.adm-side-title { margin: 0 0 14px; font: 600 var(--text-md)/1.3 var(--font-sans); color: var(--text); }
+.adm-side-card .adm-hint { margin-top: 10px; }
+
+.adm-course-poster { position: relative; overflow: hidden; aspect-ratio: 16 / 9; border-radius: var(--radius-md); background: var(--night-deep); box-shadow: var(--shadow-poster); }
+.adm-course-poster img { width: 100%; height: 100%; object-fit: cover; }
+.adm-course-poster::after { content: ''; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(3, 50, 58, 0) 40%, rgba(3, 50, 58, .5) 66%, rgba(3, 50, 58, .88) 100%); }
+.adm-course-poster-badge { position: absolute; top: 10px; left: 10px; z-index: 1; padding: 4px 10px; border-radius: var(--radius-pill); background: rgba(255, 255, 255, .9); font: 600 var(--text-xs)/1.3 var(--font-sans); color: var(--text); }
+.adm-course-poster-body { position: absolute; left: 14px; right: 14px; bottom: 12px; z-index: 1; }
+.adm-course-poster-body strong { display: block; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font: 600 var(--text-md)/1.3 var(--font-sans); color: #fff; }
+.adm-course-poster-body small { display: block; margin-top: 2px; font-size: var(--text-xs); color: rgba(255, 255, 255, .82); }
+
+.adm-status-options { display: grid; gap: 8px; }
+.adm-status-option {
+  position: relative;
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 12px 14px;
+  border: 1px solid var(--line-strong);
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  transition: border-color .2s var(--ease), background .2s var(--ease);
+}
+.adm-status-option input { position: absolute; opacity: 0; pointer-events: none; }
+.adm-status-option:hover { border-color: var(--line-gold); }
+.adm-status-option.is-active { border-color: var(--gold-deep); background: rgba(253, 227, 168, .35); }
+.adm-status-option:has(input:focus-visible) { outline: 2px solid var(--gold); outline-offset: 2px; }
+.adm-status-option strong { display: block; font: 600 var(--text-sm)/1.3 var(--font-sans); color: var(--text); }
+.adm-status-option small { display: block; margin-top: 2px; font-size: var(--text-xs); color: var(--text-mute); }
+.adm-status-dot { flex: none; width: 10px; height: 10px; margin-top: 4px; border-radius: 50%; background: var(--text-mute); }
+.adm-status-dot--published { background: var(--success); }
+.adm-status-dot--scheduled { background: var(--gold-deep); }
+.adm-status-dot--hidden { background: var(--danger); }
+#c-schedule-field { margin-top: 12px; }
+
+.adm-toggle-row { display: flex; align-items: center; justify-content: space-between; gap: 14px; margin-top: 16px; padding-top: 16px; border-top: 1px solid var(--line); cursor: pointer; }
+.adm-toggle-row strong { display: block; font: 600 var(--text-sm)/1.3 var(--font-sans); color: var(--text); }
+.adm-toggle-row small { display: block; margin-top: 2px; font-size: var(--text-xs); color: var(--text-mute); }
+.adm-toggle {
+  appearance: none;
+  position: relative;
+  flex: none;
+  width: 44px;
+  height: 26px;
+  margin: 0;
+  border-radius: var(--radius-pill);
+  background: var(--line-strong);
+  cursor: pointer;
+  transition: background .2s var(--ease);
+}
+.adm-toggle::after {
+  content: '';
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: #fff;
+  box-shadow: 0 1px 3px rgba(3, 76, 88, .3);
+  transition: transform .2s var(--ease);
+}
+.adm-toggle:checked { background: var(--gold-deep); }
+.adm-toggle:checked::after { transform: translateX(18px); }
+.adm-toggle:focus-visible { outline: 2px solid var(--gold); outline-offset: 2px; }
+
+.adm-ready-head { display: flex; align-items: baseline; justify-content: space-between; }
+.adm-ready-head span { font: 400 20px/1 var(--font-display); color: var(--gold); }
+.adm-ready { display: grid; gap: 10px; margin: 0; padding: 0; list-style: none; }
+.adm-ready li { position: relative; display: flex; align-items: center; gap: 10px; font-size: var(--text-sm); color: var(--text-mute); }
+.adm-ready li.is-done { color: var(--text); }
+.adm-ready-mark { display: grid; place-items: center; flex: none; width: 22px; height: 22px; border: 1.5px solid var(--line-strong); border-radius: 50%; }
+.adm-ready li.is-done .adm-ready-mark { border-color: var(--success); background: var(--success); color: #fff; }
+.adm-ready-mark svg { width: 12px; height: 12px; }
+
+@media (prefers-reduced-motion: reduce) {
+  .adm-cover-tile, .adm-toggle, .adm-toggle::after { transition: none; }
+}
+
+/* Responsivo ----------------------------------------------------------------------------- */
+@media (max-width: 1040px) {
+  .adm-course { grid-template-columns: 1fr; }
+  .adm-course-side { position: static; grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .adm-course-side .adm-side-card:first-child { grid-column: 1 / -1; }
+}
+@media (max-width: 760px) {
+  .adm-drawer-panel--wide .adm-drawer-head,
+  .adm-drawer-panel--wide .adm-drawer-body,
+  .adm-drawer-foot { padding-left: 18px; padding-right: 18px; }
+  .adm-course-side { grid-template-columns: 1fr; }
+  .adm-cover-gallery { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .adm-step-num { width: 36px; height: 36px; font-size: 15px; }
+  .adm-step-head { flex-wrap: wrap; }
+  .adm-step-head > .adm-btn { width: 100%; }
+}

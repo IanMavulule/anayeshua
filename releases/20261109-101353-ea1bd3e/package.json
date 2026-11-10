@@ -1,0 +1,48 @@
+{
+  "name": "ana-yeshua",
+  "private": true,
+  "version": "2.5.0",
+  "type": "module",
+  "scripts": {
+    "dev": "tsx server/dev.ts",
+    "dev:web": "vite",
+    "media": "tsx server/index.ts",
+    "start": "node server/index.ts",
+    "admin:reset": "tsx scripts/reset-admin-password.ts",
+    "db:migrate": "tsx scripts/db-migrate.ts",
+    "server:setup": "tsx scripts/server-setup.ts",
+    "deploy": "tsx scripts/deploy.ts",
+    "build": "tsc -b && vite build",
+    "preview": "vite preview",
+    "test": "tsx --test tests/server/*.test.ts",
+    "typecheck": "tsc -b",
+    "i18n:check": "node scripts/i18n-check.mjs",
+    "i18n:write": "node scripts/i18n-check.mjs --write"
+  },
+  "dependencies": {
+    "@videojs/hlsjs-video": "10.1.0",
+    "@videojs/react": "10.1.0",
+    "express": "^5.3.0",
+    "i18next": "^26.7.1",
+    "pg": "^8.23.1",
+    "react": "^19.3.1",
+    "react-dom": "^19.3.1",
+    "react-i18next": "^17.1.12",
+    "react-router-dom": "^7.18.5",
+    "zod": "^3.25.76"
+  },
+  "devDependencies": {
+    "@types/express": "^5.0.6",
+    "@types/node": "^24.19.2",
+    "@types/pg": "^8.23.1",
+    "@types/react": "^19.3.0",
+    "@types/react-dom": "^19.3.0",
+    "@vitejs/plugin-react": "^6.1.2",
+    "tsx": "^4.23.15",
+    "typescript": "~7.0.2",
+    "vite": "^8.3.5"
+  },
+  "engines": {
+    "node": ">=22"
+  }
+}

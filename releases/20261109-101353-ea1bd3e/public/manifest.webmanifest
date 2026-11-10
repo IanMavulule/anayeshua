@@ -1,0 +1,23 @@
+{
+  "name": "Ana Yeshua — Holy Ghost Ministering",
+  "short_name": "Ana Yeshua",
+  "description": "Devocionais em vídeo, Palavra do dia e pontos de oração para crescer em intimidade com o Espírito Santo.",
+  "lang": "pt-MZ",
+  "id": "/",
+  "start_url": "/dashboard",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#faf6ee",
+  "theme_color": "#034c58",
+  "categories": ["education", "lifestyle"],
+  "icons": [
+    { "src": "/brand/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "/brand/favicon.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "/brand/icon-maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ],
+  "shortcuts": [
+    { "name": "Devocionais", "url": "/playlists", "icons": [{ "src": "/brand/icon-192.png", "sizes": "192x192" }] },
+    { "name": "Palavra do dia", "url": "/palavra", "icons": [{ "src": "/brand/icon-192.png", "sizes": "192x192" }] }
+  ]
+}
